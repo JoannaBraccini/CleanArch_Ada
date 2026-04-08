@@ -2,7 +2,6 @@ package ada.joanna.api_usuarios.infrastructure.repositories;
 
 import ada.joanna.api_usuarios.domain.repositories.UserRepository;
 import ada.joanna.api_usuarios.infrastructure.repositories.entities.UserEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.Optional;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    @Autowired
-    JpaUserRepository jpaUserRepository;
+    private final JpaUserRepository jpaUserRepository;
+
+    public UserRepositoryImpl(JpaUserRepository jpaUserRepository) {
+        this.jpaUserRepository = jpaUserRepository;
+    }
 
     @Override
     public List<UserEntity> findAll() {
